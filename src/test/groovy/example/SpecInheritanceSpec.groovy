@@ -13,7 +13,7 @@ abstract class BasicSpec extends Specification {
 
     def setup() {println 'base setup()'}
     def cleanup() {println 'base cleanup()'}
-`
+
     def baseSpecMethod() {setup: println 'base specc method'}
 }
 
