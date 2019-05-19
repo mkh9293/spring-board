@@ -13,27 +13,27 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Repository
-public class BoardDAO {
+public class BoardRepository {
     private final String TABLE_NAME = "board";
     private final String GEN_KEY = "id";
 
     private NamedParameterJdbcTemplate jdbc;
     private SimpleJdbcInsert insertAct;
-    private RowMapper<BoardDTO> rowMapper = BeanPropertyRowMapper.newInstance(BoardDTO.class);
+    private RowMapper<Board> rowMapper = BeanPropertyRowMapper.newInstance(Board.class);
 
-    public BoardDAO(DataSource dataSource) {
+    public BoardRepository(DataSource dataSource) {
         this.jdbc = new NamedParameterJdbcTemplate(dataSource);
         this.insertAct = new SimpleJdbcInsert(dataSource)
                 .withTableName(TABLE_NAME)
                 .usingGeneratedKeyColumns(GEN_KEY);
     }
 
-    public Long insert(BoardDTO boardDTO) {
-        SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(boardDTO);
+    public Long insert(Board board) {
+        SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(board);
         return insertAct.executeAndReturnKey(parameterSource).longValue();
     }
 
-    public BoardDTO selectById(long id) {
+    public Board selectById(long id) {
         Map<String, Object> params = new HashMap<>();
         params.put(GEN_KEY, id);
         return jdbc.queryForObject(BoardSQL.SELECT_BY_ID, params, rowMapper);

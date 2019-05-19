@@ -12,17 +12,17 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = RootConfiguration.class)
-public class boardDAOTest {
+public class BoardRepositoryTest {
     @Autowired
-    BoardDAO boardDAO;
+    BoardRepository boardRepository;
 
     @Test
     public void test_insert(){
         // given
-        BoardDTO boardDTO = new BoardDTO("test title", "test content");
+        Board board = new Board("test title", "test content");
 
         //when
-        Long boardPk = boardDAO.insert(boardDTO);
+        Long boardPk = boardRepository.insert(board);
 
         //then
         assertThat(boardPk, is(3L));
@@ -34,10 +34,10 @@ public class boardDAOTest {
         int id = 1;
 
         //when
-        BoardDTO boardDTO = boardDAO.selectById(id);
+        Board board = boardRepository.selectById(id);
 
         //then
-        assertThat(boardDTO.getTitle(), is("test title"));
-        assertThat(boardDTO.getContent(), is("test content"));
+        assertThat(board.getTitle(), is("test title"));
+        assertThat(board.getContent(), is("test content"));
     }
 }

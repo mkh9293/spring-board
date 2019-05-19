@@ -2,21 +2,21 @@ package board;
 
 import java.util.Date;
 
-public class BoardDTO {
+public class Board {
     private int id;
     private String title;
     private String content;
     private Date regDate;
 
-    public BoardDTO() {
+    public Board() {
     }
 
-    public BoardDTO(String title, String content) {
+    public Board(String title, String content) {
         this.title = title;
         this.content = content;
     }
 
-    public BoardDTO(int id, String title, String content, Date regDate) {
+    public Board(int id, String title, String content, Date regDate) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -57,7 +57,7 @@ public class BoardDTO {
 
     @Override
     public String toString() {
-        return "BoardDTO{" +
+        return "Board{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
