@@ -2,6 +2,7 @@ package board;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -36,6 +37,11 @@ public class BoardRepository {
     public Board selectById(long id) {
         Map<String, Object> params = new HashMap<>();
         params.put(GEN_KEY, id);
-        return jdbc.queryForObject(BoardSQL.SELECT_BY_ID, params, rowMapper);
+        return jdbc.queryForObject(BoardSql.SELECT_BY_ID, params, rowMapper);
+    }
+
+    public int update(Board board) {
+        SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(board);
+        return jdbc.update(BoardSql.UPDATE_BY_ID, parameterSource);
     }
 }

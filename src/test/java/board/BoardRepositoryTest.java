@@ -40,4 +40,23 @@ public class BoardRepositoryTest {
         assertThat(board.getTitle(), is("test title"));
         assertThat(board.getContent(), is("test content"));
     }
+
+    @Test
+    public void test_update() {
+        //given
+        int id = 1;
+
+        //when
+        Board board = boardRepository.selectById(id);
+        board.setContent("test content update");
+        board.setTitle("test title update");
+        boardRepository.update(board);
+
+        //then
+        Board board1 = boardRepository.selectById(id);
+        assertThat(board1.getContent(), is("test content update"));
+        assertThat(board1.getTitle(), is("test title update"));
+    }
+
+
 }
