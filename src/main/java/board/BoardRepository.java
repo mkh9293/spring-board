@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,5 +44,10 @@ public class BoardRepository {
     public int update(Board board) {
         SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(board);
         return jdbc.update(BoardSql.UPDATE_BY_ID, parameterSource);
+    }
+
+    public int delete(long id) {
+        Map<String, ?> params = Collections.singletonMap(GEN_KEY, id);
+        return jdbc.update(BoardSql.DELETE_BY_ID, params);
     }
 }
