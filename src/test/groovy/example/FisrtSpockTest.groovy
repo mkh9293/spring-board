@@ -16,13 +16,13 @@ class FisrtSpockTest extends Specification {
         원단위_반올림 == 500
     }
 
-     def "computing the maximum of two numbers"() {
-         expect:
-         Math.max(a, b) == c
+    def "computing the maximum of two numbers"() {
+        expect:
+        Math.max(a, b) == c
 
-         where:
-         a | b | c
-         5 | 1 | 5
-         3 | 9 | 9
-     }
+        where:
+        a | b | c
+        5 | 1 | 5
+        3 | 9 | 9
+    }
 }

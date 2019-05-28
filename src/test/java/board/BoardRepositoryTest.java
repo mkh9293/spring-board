@@ -17,7 +17,7 @@ public class BoardRepositoryTest {
     BoardRepository boardRepository;
 
     @Test
-    public void test_insert(){
+    public void test_insert() {
         // given
         Board board = new Board("test title", "test content");
 
@@ -57,6 +57,8 @@ public class BoardRepositoryTest {
         assertThat(board1.getContent(), is("test content update"));
         assertThat(board1.getTitle(), is("test title update"));
     }
+
+
 
 
 }

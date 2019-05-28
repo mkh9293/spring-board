@@ -9,17 +9,22 @@ class EmptyStackSpec extends Specification {
     def stack = new Stack()
 
     def "size"() {
-        expect: stack.size() == 0
+        expect:
+        stack.size() == 0
     }
 
     def "pop"() {
-        when: stack.pop()
-        then: thrown(EmptyStackException)
+        when:
+        stack.pop()
+        then:
+        thrown(EmptyStackException)
     }
 
     def "peek"() {
-        when: stack.peek()
-        then: thrown(EmptyStackException)
+        when:
+        stack.peek()
+        then:
+        thrown(EmptyStackException)
     }
 
     def "push"() {
@@ -43,7 +48,8 @@ class StackWithOneElementSpec extends Specification {
     }
 
     def "size"() {
-        expect: stack.size() == 1
+        expect:
+        stack.size() == 1
     }
 
     def "pop"() {
@@ -81,11 +87,12 @@ class StackWithThreeElementStack extends Specification {
     def stack = new Stack()
 
     def setup() {
-        ["elem1", "elem2", "elem3"].each {stack.push(it)}
+        ["elem1", "elem2", "elem3"].each { stack.push(it) }
     }
 
     def "size"() {
-        expect: stack.size() == 3
+        expect:
+        stack.size() == 3
     }
 
     def "pop"() {

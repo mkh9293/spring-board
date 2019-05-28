@@ -24,10 +24,10 @@ class IncludeExcludeExtensionSpec extends Specification {
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-@interface Fast{}
+@interface Fast {}
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-@interface Slow{}
+@interface Slow {}
 
 

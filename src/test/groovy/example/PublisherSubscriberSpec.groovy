@@ -16,12 +16,13 @@ class Publisher {
         subscribers.each {
             try {
                 it.receive(event)
-            } catch(Exception e){}
+            } catch (Exception e) {
+            }
         }
     }
 }
 
-class PublisherSpec extends Specification{
+class PublisherSpec extends Specification {
     def pub = new Publisher()
     def sub1 = Mock(Subscriber)
     def sub2 = Mock(Subscriber)
@@ -40,7 +41,7 @@ class PublisherSpec extends Specification{
     }
 
     def "can cope with misbehaving subscribers"() {
-        sub1.receive(_) >> {throw new Exception()}
+        sub1.receive(_) >> { throw new Exception() }
 
         when:
         pub.send("event1")

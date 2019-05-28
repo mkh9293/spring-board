@@ -14,9 +14,9 @@ class DataDrivenSpec extends Specification {
         Math.max(a, b) == c
 
         where:
-        a << [3,5,9]
-        b << [7,4,9]
-        c << [7,5,9]
+        a << [3, 5, 9]
+        b << [7, 4, 9]
+        c << [7, 5, 9]
     }
 
     // 최소값
@@ -36,13 +36,14 @@ class DataDrivenSpec extends Specification {
         person.getSex() == sex
 
         where:
-        person || sex
-        new Person(name: "Fred") || "Male"
+        person                    || sex
+        new Person(name: "Fred")  || "Male"
         new Person(name: "Wilma") || "Female"
     }
 
     static class Person {
         String name
+
         String getSex() {
             name == "Fred" ? "Male" : "Female"
         }

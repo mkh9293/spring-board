@@ -8,7 +8,8 @@ import spock.lang.Specification
  * test db
  */
 class DatabaseDrivenSpec extends Specification {
-    @Shared sql = Sql.newInstance("jdbc:h2:mem:", "org.h2.Driver")
+    @Shared
+            sql = Sql.newInstance("jdbc:h2:mem:", "org.h2.Driver")
 
     def setupSpec() {
         sql.execute("create table maxdata (id int primary key, a int, b int, c int)")
@@ -20,6 +21,6 @@ class DatabaseDrivenSpec extends Specification {
         Math.max(a, b) == c
 
         where:
-        [a,b,c] << sql.rows("select a, b, c from maxdata")
+        [a, b, c] << sql.rows("select a, b, c from maxdata")
     }
 }
