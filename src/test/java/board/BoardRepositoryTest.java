@@ -8,6 +8,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -19,7 +21,7 @@ public class BoardRepositoryTest {
     BoardRepository boardRepository;
 
     @Test
-    public void test_insert() {
+    public void write_test() {
         // given
         Board board = new Board("test title", "test content");
 
@@ -31,7 +33,7 @@ public class BoardRepositoryTest {
     }
 
     @Test
-    public void test_select() {
+    public void get_test() {
         //given
         int id = 1;
 
@@ -44,7 +46,7 @@ public class BoardRepositoryTest {
     }
 
     @Test
-    public void test_update() {
+    public void update_test() {
         //given
         int id = 1;
 
@@ -61,7 +63,7 @@ public class BoardRepositoryTest {
     }
 
     @Test
-    public void test_delete() {
+    public void delete_test() {
         //given
         int id = 3;
 
@@ -70,5 +72,14 @@ public class BoardRepositoryTest {
 
         //then
         assertThat(result, is(1));
+    }
+
+    @Test
+    public void list_test() {
+        //when
+        List<Board> boardList = boardRepository.list();
+
+        //then
+        assertThat(boardList.size(), is(3));
     }
 }

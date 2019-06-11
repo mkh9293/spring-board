@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -49,5 +50,9 @@ public class BoardRepository {
     public int delete(long id) {
         Map<String, ?> params = Collections.singletonMap(GEN_KEY, id);
         return jdbc.update(BoardSql.DELETE_BY_ID, params);
+    }
+
+    public List<Board> list() {
+        return jdbc.query(BoardSql.SELECT_ALL, rowMapper);
     }
 }
