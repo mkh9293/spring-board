@@ -2,7 +2,7 @@ package response;
 
 public enum ResponseCode {
 
-    OK(200, "success");
+    OK(200, "OK");
 
     private int httpStatus;
     private String message;

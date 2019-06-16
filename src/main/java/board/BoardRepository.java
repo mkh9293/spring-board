@@ -2,6 +2,7 @@ package board;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -9,7 +10,10 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class BoardRepository {
@@ -27,29 +31,28 @@ public class BoardRepository {
                 .usingGeneratedKeyColumns(GEN_KEY);
     }
 
-    public Optional<Long> insert(Board board) {
+    public Long insert(Board board) {
         SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(board);
-        return Optional.of(insertAct.executeAndReturnKey(parameterSource).longValue());
+        return insertAct.executeAndReturnKey(parameterSource).longValue();
     }
 
-    public Optional<Board> selectById(long id) {
+    public Board selectById(long id) {
         Map<String, Object> params = new HashMap<>();
         params.put(GEN_KEY, id);
-        return Optional.of(jdbc.queryForObject(BoardSql.SELECT_BY_ID, params, rowMapper));
+        return jdbc.queryForObject(BoardSql.SELECT_BY_ID, params, rowMapper);
     }
 
-    public Optional<Integer> update(Board board) {
+    public int update(Board board) {
         SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(board);
-        return Optional.of(jdbc.update(BoardSql.UPDATE_BY_ID, parameterSource));
+        return jdbc.update(BoardSql.UPDATE_BY_ID, parameterSource);
     }
 
-    public Optional<Integer> delete(long id) {
+    public int delete(long id) {
         Map<String, ?> params = Collections.singletonMap(GEN_KEY, id);
-        return Optional.of(jdbc.update(BoardSql.DELETE_BY_ID, params));
+        return jdbc.update(BoardSql.DELETE_BY_ID, params);
     }
 
     public List<Board> list() {
-        List<Board> list = jdbc.query(BoardSql.SELECT_ALL, rowMapper);
-        return list.isEmpty() ? Collections.EMPTY_LIST : list;
+        return jdbc.query(BoardSql.SELECT_ALL, rowMapper);
     }
 }
