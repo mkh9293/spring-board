@@ -5,9 +5,9 @@ import org.springframework.stereotype.Service;
 import javax.xml.ws.Response;
 
 @Service
-public class BoardService {
+public class BoardService{
 
-    private final BoardRepository boardRepository;
+    private BoardRepository boardRepository;
 
     public BoardService(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;

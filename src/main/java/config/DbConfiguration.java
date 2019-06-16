@@ -12,9 +12,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 
 @Configuration
-@PropertySource("classpath:/application.yml")
+@PropertySource("classpath:/application.properties")
 @EnableTransactionManagement
 public class DbConfiguration {
+
     @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
 
