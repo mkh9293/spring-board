@@ -1,11 +1,9 @@
 package board;
 
 import config.RootConfiguration;
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,10 +29,10 @@ public class BoardServiceTest {
         board.setContent("service content");
 
         //when
-        HttpStatus result = boardService.insert(board);
+        long result = boardService.insert(board);
 
         //then
-        assertThat(result.value(), is(200));
+        assertThat(result, is(1));
     }
 
     @Test
