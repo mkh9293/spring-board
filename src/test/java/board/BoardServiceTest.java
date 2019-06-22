@@ -41,7 +41,7 @@ public class BoardServiceTest {
         int id = 3;
 
         //when
-        Board board = boardService.selectById(id);
+        Board board = boardService.selectById(id).get();
 
         //then
         assertThat(board.getId(), is(3));
@@ -55,7 +55,7 @@ public class BoardServiceTest {
         int id = 3;
 
         //when
-        Board board = boardService.selectById(id);
+        Board board = boardService.selectById(id).get();
         board.setContent("update content");
         board.setTitle("update title");
         int result = boardService.update(board);
@@ -63,7 +63,7 @@ public class BoardServiceTest {
         //then
         assertThat(result, is(1));
 
-        board = boardService.selectById(id);
+        board = boardService.selectById(id).get();
         assertThat(board.getTitle(), is("update title"));
         assertThat(board.getContent(), is("update content"));
     }

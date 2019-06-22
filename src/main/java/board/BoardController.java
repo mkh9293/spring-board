@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/board")
+@RequestMapping("/board")
 public class BoardController {
     private BoardService boardService;
 

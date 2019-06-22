@@ -13,6 +13,10 @@ repositories {
 }
 
 dependencies {
+    //jackson-databind
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.9'
+    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8', version: '2.9.9'
+    
     // servlet
     implementation group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
 
