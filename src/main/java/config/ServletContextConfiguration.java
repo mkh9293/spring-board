@@ -19,7 +19,7 @@ import java.util.List;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"board"})
+@ComponentScan(basePackages = {"board", "config"})
 public class ServletContextConfiguration extends WebMvcConfigurationSupport {
 
     @Override
