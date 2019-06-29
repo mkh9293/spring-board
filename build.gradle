@@ -3,6 +3,8 @@ plugins {
     id 'groovy'
 }
 
+apply plugin: 'war'
+
 group 'com.mkh'
 version '1.0-SNAPSHOT'
 
@@ -24,22 +26,22 @@ dependencies {
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
     
     //dbcp
-    compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
+    implementation group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
 
     //spring
-    compile group: 'org.springframework', name: 'spring-web', version: '5.1.7.RELEASE'
-    compile group: 'org.springframework', name: 'spring-jdbc', version: '5.1.7.RELEASE'
-    compile group: 'org.springframework', name: 'spring-webmvc', version: '5.1.7.RELEASE'
+    implementation group: 'org.springframework', name: 'spring-web', version: '5.1.7.RELEASE'
+    implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.1.7.RELEASE'
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.1.7.RELEASE'
     testCompile group: 'org.springframework', name: 'spring-test', version: '5.1.7.RELEASE'
 
     // mysql
-    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.16'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.16'
 
     //h2
     testRuntime "com.h2database:h2:1.4.197"
 
     // test framework
-    compile "org.codehaus.groovy:groovy-all:2.4.15"
+    implementation "org.codehaus.groovy:groovy-all:2.4.15"
     testCompile group: 'org.mockito', name: 'mockito-core', version: '2.28.2'
     testCompile "org.spockframework:spock-core:1.2-groovy-2.4"
     testCompile "org.hamcrest:hamcrest-core:1.3"

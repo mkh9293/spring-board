@@ -4,8 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 public class BoardController {
     private BoardService boardService;
@@ -30,15 +28,19 @@ public class BoardController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
-    @GetMapping("/${id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Board> selectById(@PathVariable long id){
-        Optional<Board> board = boardService.selectById(id);
 
-        if(board.isPresent()) return ResponseEntity.status(HttpStatus.OK).body(board.get());
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        Board board = boardService.selectById(id);
+
+        if(board.getId() > 0) {
+            return ResponseEntity.status(HttpStatus.OK).body(board);
+        }
+
+        return new ResponseEntity<Board>(board, HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/${id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable long id){
         long result = boardService.delete(id);
 

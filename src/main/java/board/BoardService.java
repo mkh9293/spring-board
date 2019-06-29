@@ -3,7 +3,6 @@ package board;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BoardService{
@@ -17,8 +16,8 @@ public class BoardService{
         return boardRepository.insert(board);
     }
 
-    public Optional<Board> selectById(long id) {
-        return Optional.of(boardRepository.selectById(id));
+    public Board selectById(long id) {
+        return boardRepository.selectById(id).orElseGet(()->new Board());
     }
 
     public int update(Board board) {

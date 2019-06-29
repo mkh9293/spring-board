@@ -9,10 +9,8 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.logging.Logger;
 
 @Repository
 public class BoardRepository {
@@ -35,10 +33,14 @@ public class BoardRepository {
         return insertAct.executeAndReturnKey(parameterSource).longValue();
     }
 
-    public Board selectById(long id) {
-        Map<String, Object> params = new HashMap<>();
-        params.put(GEN_KEY, id);
-        return jdbc.queryForObject(BoardSql.SELECT_BY_ID, params, rowMapper);
+    public Optional<Board> selectById(long id) {
+        try {
+            Map<String, Object> params = new HashMap<>();
+            params.put(GEN_KEY, id);
+            return Optional.ofNullable(jdbc.queryForObject(BoardSql.SELECT_BY_ID, params, rowMapper));
+        } catch (Exception e) {
+            return Optional.empty();
+        }
     }
 
     public int update(Board board) {
